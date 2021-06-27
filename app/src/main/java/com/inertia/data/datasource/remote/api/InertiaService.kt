@@ -1,11 +1,14 @@
 package com.inertia.data.datasource.remote.api
 
+import dagger.Provides
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 
+@Singleton
 class InertiaService {
     private val client = OkHttpClient.Builder()
         .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
@@ -14,23 +17,11 @@ class InertiaService {
         .retryOnConnectionFailure(true)
         .build()
 
-    private val retrofit = Retrofit.Builder()
-        .baseUrl("http://35.224.208.225/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(client)
-        .build()
-
     private val retrofitPenilaian = Retrofit.Builder()
         .baseUrl("http://34.82.125.98:8000/")
         .addConverterFactory(GsonConverterFactory.create())
         .client(client)
         .build()
-
-    fun getBencanaService(): BencanaService = retrofit.create(BencanaService::class.java)
-
-    fun getUserService(): UserService = retrofit.create(UserService::class.java)
-
-    fun getCuacaService(): CuacaService = retrofit.create(CuacaService::class.java)
 
     fun getPenilaian(): PenilaianService = retrofitPenilaian.create(PenilaianService::class.java)
 

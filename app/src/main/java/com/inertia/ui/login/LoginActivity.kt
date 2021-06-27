@@ -6,8 +6,10 @@ import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.inertia.MyApplication
 import com.inertia.data.datasource.local.entity.UserEntity
 import com.inertia.databinding.ActivityLoginBinding
 import com.inertia.ui.register.RegisterActivity
@@ -15,6 +17,7 @@ import com.inertia.ui.verification.VerificationActivity
 import com.inertia.utils.DataMapper
 import com.inertia.utils.ViewModelFactory
 import com.mirfanrafif.kicksfilm.data.source.remote.StatusResponse
+import javax.inject.Inject
 
 class LoginActivity : AppCompatActivity() {
 
@@ -23,10 +26,15 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var viewModel: LoginViewModel
+
+    @Inject
+    lateinit var factory: ViewModelFactory
+
+    private val viewModel: LoginViewModel by viewModels { factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (application as MyApplication).coreComponent.inject(this)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -35,9 +43,6 @@ class LoginActivity : AppCompatActivity() {
         if (user != null) {
             binding.edtPhone.setText(user.nomorWa)
         }
-
-        val factory = ViewModelFactory.getInstance(this)
-        viewModel = ViewModelProvider(this, factory)[LoginViewModel::class.java]
 
         binding.edtPhone.setOnKeyListener { v, keyCode, event ->
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {

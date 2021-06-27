@@ -3,9 +3,11 @@ package com.inertia.ui.terdampak
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.inertia.MyApplication
 import com.inertia.data.datasource.local.entity.TerdampakEntity
 import com.inertia.data.datasource.local.entity.UserEntity
 import com.inertia.data.datasource.remote.api.InertiaService
@@ -15,6 +17,7 @@ import com.inertia.ui.main.MainViewModel
 import com.inertia.utils.ViewModelFactory
 import retrofit2.Call
 import retrofit2.Response
+import javax.inject.Inject
 
 class TerdampakActivity : AppCompatActivity() {
     companion object {
@@ -24,14 +27,17 @@ class TerdampakActivity : AppCompatActivity() {
     private lateinit var binding: ActivityTerdampakBinding
     private var terdampakResponseItem: ArrayList<TerdampakResponse> = ArrayList()
     private lateinit var nomorWA: String
-    private lateinit var viewModel: MainViewModel
+
+    @Inject
+    lateinit var factory: ViewModelFactory
+
+    private val viewModel: MainViewModel by viewModels { factory }
     private var user: UserEntity? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (application as MyApplication).coreComponent.inject(this)
         binding = ActivityTerdampakBinding.inflate(layoutInflater)
-        val factory = ViewModelFactory.getInstance(this)
-        viewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
         user = viewModel.getUser()
         setContentView(binding.root)
         getData()

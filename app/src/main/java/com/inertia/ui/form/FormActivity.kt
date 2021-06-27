@@ -6,9 +6,11 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.inertia.MyApplication
 import com.inertia.data.datasource.local.entity.BencanaEntity
 import com.inertia.data.datasource.local.entity.UserEntity
 import com.inertia.data.datasource.remote.request.BencanaRequest
@@ -19,6 +21,7 @@ import com.mirfanrafif.kicksfilm.data.source.remote.StatusResponse
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
 class FormActivity : AppCompatActivity() {
     companion object {
@@ -29,16 +32,23 @@ class FormActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFormBinding
     private lateinit var file: File
 
-    private lateinit var viewModel: FormViewModel
+    @Inject
+    lateinit var factory: ViewModelFactory
+
+    private val viewModel: FormViewModel by viewModels { factory }
+
+
     private var user: UserEntity? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (application as MyApplication).coreComponent.inject(this)
         binding = ActivityFormBinding.inflate(layoutInflater)
         setContentView(binding.root)
+    }
 
-        val factory = ViewModelFactory.getInstance(this)
-        viewModel = ViewModelProvider(this, factory)[FormViewModel::class.java]
+    override fun onStart() {
+        super.onStart()
         user = viewModel.getUser()
 
         val imageUri: Uri? = intent.getParcelableExtra(EXTRA_IMG_URI)

@@ -3,8 +3,11 @@ package com.inertia.data.datasource.local.preference
 import android.content.Context
 import androidx.core.content.edit
 import com.inertia.data.datasource.local.entity.UserEntity
+import dagger.Provides
+import javax.inject.Singleton
 
-class UserPreferences(context: Context) {
+@Singleton
+class UserPreferences(context: Context): IUserPreferences {
     companion object {
         private const val PREFS_NAME = "user_pref"
         private const val NAME = "name"
@@ -15,7 +18,7 @@ class UserPreferences(context: Context) {
 
     private val preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
-    fun setUser(user: UserEntity?) {
+    override fun setUser(user: UserEntity?) {
         preferences.edit {
             putString(NAME, user?.nama)
             putString(PHONE_NUMBER, user?.nomorWa)
@@ -24,7 +27,7 @@ class UserPreferences(context: Context) {
         }
     }
 
-    fun getUser(): UserEntity {
+    override fun getUser(): UserEntity {
         val user = UserEntity()
         user.nama = preferences.getString(NAME, null)
         user.nomorWa = preferences.getString(PHONE_NUMBER, null)

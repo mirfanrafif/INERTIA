@@ -1,8 +1,9 @@
 package com.inertia.data.datasource.remote
 
 import com.inertia.data.datasource.remote.api.CuacaService
+import javax.inject.Inject
 
-class CuacaRemoteDataSource(private val service: CuacaService) {
+class CuacaRemoteDataSource @Inject constructor (private val service: CuacaService) {
 
     companion object {
         @Volatile

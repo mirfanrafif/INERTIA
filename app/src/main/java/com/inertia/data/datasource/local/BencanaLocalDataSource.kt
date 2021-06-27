@@ -2,8 +2,11 @@ package com.inertia.data.datasource.local
 
 import com.inertia.data.datasource.local.dao.BencanaDao
 import com.inertia.data.datasource.local.entity.BencanaEntity
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class BencanaLocalDataSource private constructor(private val bencanaDao: BencanaDao) {
+@Singleton
+class BencanaLocalDataSource @Inject constructor(private val bencanaDao: BencanaDao) {
 
     companion object {
         @Volatile

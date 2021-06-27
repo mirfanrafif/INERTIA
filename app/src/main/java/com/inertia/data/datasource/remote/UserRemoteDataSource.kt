@@ -11,8 +11,9 @@ import com.inertia.data.datasource.remote.response.RegisterResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class UserRemoteDataSource(private val service: UserService) {
+class UserRemoteDataSource @Inject constructor (private val service: UserService) {
     fun login(phoneNumber: String): LiveData<ApiResponse<LoginResponse>> {
         val loginLiveData = MutableLiveData<ApiResponse<LoginResponse>>()
         service.login(phoneNumber).enqueue(object : Callback<LoginResponse> {

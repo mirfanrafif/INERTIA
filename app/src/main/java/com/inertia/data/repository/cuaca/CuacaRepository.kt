@@ -9,8 +9,9 @@ import com.inertia.data.datasource.remote.response.WeatherResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class CuacaRepository(private val cuacaRemoteDataSource: CuacaRemoteDataSource): ICuacaRepository {
+class CuacaRepository @Inject constructor (private val cuacaRemoteDataSource: CuacaRemoteDataSource): ICuacaRepository {
 
     companion object {
         @Volatile

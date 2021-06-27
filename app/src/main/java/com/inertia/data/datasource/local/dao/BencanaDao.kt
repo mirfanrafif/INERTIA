@@ -3,8 +3,10 @@ package com.inertia.data.datasource.local.dao
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.inertia.data.datasource.local.entity.BencanaEntity
+import javax.inject.Singleton
 
 @Dao
+@Singleton
 interface BencanaDao {
     @Query("SELECT * FROM bencanaEntity")
     fun getAllBencana(): LiveData<List<BencanaEntity>>

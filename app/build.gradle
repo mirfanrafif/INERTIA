@@ -60,6 +60,14 @@ dependencies {
     kapt "androidx.room:room-compiler:$roomVersion"
     implementation "androidx.room:room-runtime:$roomRuntimeVersion"
 
+    //by viewModels di Activity dan Fragment
+    implementation "androidx.activity:activity-ktx:1.1.0"
+    implementation "androidx.fragment:fragment-ktx:1.2.5"
+
+    //dagger
+    implementation 'com.google.dagger:dagger:2.37'
+    kapt 'com.google.dagger:dagger-compiler:2.37'
+
     //otpview
     implementation 'com.github.mukeshsolanki:android-otpview-pinview:2.1.2'
 

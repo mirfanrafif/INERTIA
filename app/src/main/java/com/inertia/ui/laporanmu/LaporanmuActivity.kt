@@ -4,23 +4,29 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.inertia.MyApplication
 import com.inertia.databinding.ActivityLaporanmuBinding
 import com.inertia.ui.home.BencanaAdapter
 import com.inertia.utils.ViewModelFactory
 import com.mirfanrafif.kicksfilm.vo.Status
+import javax.inject.Inject
 
 class LaporanmuActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLaporanmuBinding
-    private lateinit var viewModel: LaporanmuViewModel
+
+    @Inject
+    lateinit var factory: ViewModelFactory
+
+    private val viewModel: LaporanmuViewModel by viewModels { factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (application as MyApplication).coreComponent.inject(this)
         binding = ActivityLaporanmuBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val factory = ViewModelFactory.getInstance(this)
-        viewModel = ViewModelProvider(this, factory)[LaporanmuViewModel::class.java]
     }
 
     override fun onStart() {

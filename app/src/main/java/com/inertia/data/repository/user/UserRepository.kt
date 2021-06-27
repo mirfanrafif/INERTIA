@@ -4,8 +4,9 @@ import com.inertia.data.datasource.local.UserLocalDataSource
 import com.inertia.data.datasource.local.entity.UserEntity
 import com.inertia.data.datasource.remote.UserRemoteDataSource
 import com.inertia.data.datasource.remote.request.RegisterRequest
+import javax.inject.Inject
 
-class UserRepository(
+class UserRepository @Inject constructor(
     val local: UserLocalDataSource,
     val remote: UserRemoteDataSource
 ) : IUserRepository {

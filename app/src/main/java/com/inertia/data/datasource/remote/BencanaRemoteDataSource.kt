@@ -11,8 +11,10 @@ import com.inertia.utils.MultipartHelper
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import javax.inject.Inject
 
-class BencanaRemoteDataSource private constructor(private val service: BencanaService){
+
+class BencanaRemoteDataSource @Inject constructor(private val service: BencanaService){
     companion object {
         @Volatile
         private var instance: BencanaRemoteDataSource? = null

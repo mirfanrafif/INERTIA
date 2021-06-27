@@ -7,11 +7,13 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.inertia.BuildConfig
+import com.inertia.MyApplication
 import com.inertia.R
 import com.inertia.databinding.ActivityMainBinding
 import com.inertia.ui.form.FormActivity
@@ -22,6 +24,7 @@ import com.inertia.utils.ViewModelFactory
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
@@ -33,10 +36,18 @@ class MainActivity : AppCompatActivity() {
     private val AUTHORITY = BuildConfig.APPLICATION_ID + ".provider"
     private lateinit var imageUri : Uri //uri lokasi dari foto
     private lateinit var output : File
-    private lateinit var viewModel: MainViewModel
+
+
+    @Inject
+    lateinit var factory: ViewModelFactory
+
+    private val viewModel: MainViewModel by viewModels {
+        factory
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        (application as MyApplication).coreComponent.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -44,8 +55,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        val factory = ViewModelFactory.getInstance(this)
-        viewModel = ViewModelProvider(this, factory)[MainViewModel::class.java]
 
         val homeFragment = HomeFragment.getInstance()
         val profileFragment = ProfileFragment.getInstance()

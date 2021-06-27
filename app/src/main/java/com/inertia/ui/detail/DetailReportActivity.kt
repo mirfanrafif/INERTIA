@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
@@ -15,6 +16,7 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.inertia.MyApplication
 import com.inertia.R
 import com.inertia.data.datasource.local.entity.BencanaEntity
 import com.inertia.data.datasource.local.entity.UserEntity
@@ -23,6 +25,7 @@ import com.inertia.databinding.CrowdfundingAlertLayoutBinding
 import com.inertia.ui.assessment.AssessmentActivity
 import com.inertia.ui.login.LoginActivity
 import com.inertia.utils.ViewModelFactory
+import javax.inject.Inject
 
 class DetailReportActivity : AppCompatActivity() {
     companion object{
@@ -30,23 +33,26 @@ class DetailReportActivity : AppCompatActivity() {
     }
 
     private lateinit var binding: ActivityDetailReportBinding
-    private lateinit var viewModel: DetailReportViewModel
     private lateinit var user: UserEntity
     private var isFabVisible = false
     private var detailBencana: BencanaEntity? = null
     private lateinit var mutableDetailBencana: LiveData<BencanaEntity>
     private lateinit var mapFragment: SupportMapFragment
 
+    @Inject
+    lateinit var factory: ViewModelFactory
+
+    private val viewModel: DetailReportViewModel by viewModels { factory }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (application as MyApplication).coreComponent.inject(this)
         binding = ActivityDetailReportBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
 
     override fun onStart() {
         super.onStart()
-        val factory = ViewModelFactory.getInstance(this)
-        viewModel = ViewModelProvider(this, factory)[DetailReportViewModel::class.java]
         viewModel.setBencana(intent.getParcelableExtra(BENCANA))
         mapFragment = supportFragmentManager.findFragmentById(R.id.maps) as SupportMapFragment
         user = viewModel.getUser()

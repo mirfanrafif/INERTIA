@@ -4,7 +4,9 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.inertia.data.repository.bencana.BencanaRepository
+import com.inertia.data.repository.bencana.IBencanaRepository
 import com.inertia.data.repository.cuaca.CuacaRepository
+import com.inertia.data.repository.user.IUserRepository
 import com.inertia.data.repository.user.UserRepository
 import com.inertia.ui.detail.DetailReportViewModel
 import com.inertia.ui.form.FormViewModel
@@ -15,25 +17,14 @@ import com.inertia.ui.main.MainViewModel
 import com.inertia.ui.profile.ProfileViewModel
 import com.inertia.ui.register.RegisterViewModel
 import com.inertia.ui.verification.VerificationViewModel
+import javax.inject.Inject
 
 @Suppress("UNCHECKED_CAST")
-class ViewModelFactory private constructor (
-    private val bencanaRepository: BencanaRepository,
-    private val userRepository: UserRepository,
+class ViewModelFactory @Inject constructor (
+    private val bencanaRepository: IBencanaRepository,
+    private val userRepository: IUserRepository,
     private val cuacaRepository: CuacaRepository
     ) : ViewModelProvider.NewInstanceFactory() {
-    companion object {
-        @Volatile
-        private var instance: ViewModelFactory? = null
-
-        fun getInstance(context: Context) = instance ?: synchronized(this) {
-            instance ?: ViewModelFactory(
-                Injection.provideBencanaRepository(context),
-                Injection.provideUserRepository(context),
-                Injection.provideCuacaRepository(),
-            )
-        }
-    }
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return when {

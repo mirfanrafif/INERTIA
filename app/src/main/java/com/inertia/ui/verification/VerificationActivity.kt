@@ -3,12 +3,14 @@ package com.inertia.ui.verification
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.inertia.data.datasource.local.entity.UserEntity
 import com.inertia.databinding.ActivityVerificationBinding
 import com.inertia.ui.main.MainActivity
 import com.inertia.utils.ViewModelFactory
+import javax.inject.Inject
 
 class VerificationActivity : AppCompatActivity() {
     companion object {
@@ -20,7 +22,10 @@ class VerificationActivity : AppCompatActivity() {
     private var code: String? = null
 
     private lateinit var binding: ActivityVerificationBinding
-    private lateinit var viewModel: VerificationViewModel
+
+    @Inject lateinit var factory: ViewModelFactory
+
+    private val viewModel: VerificationViewModel by viewModels { factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +34,6 @@ class VerificationActivity : AppCompatActivity() {
         code = intent.getStringExtra(EXTRA_CODE)
 
         binding = ActivityVerificationBinding.inflate(layoutInflater)
-        val factory = ViewModelFactory.getInstance(this)
-        viewModel = ViewModelProvider(this, factory)[VerificationViewModel::class.java]
         setContentView(binding.root)
 
         with(binding) {

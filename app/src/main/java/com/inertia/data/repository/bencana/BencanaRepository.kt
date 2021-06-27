@@ -12,25 +12,14 @@ import com.inertia.data.datasource.remote.response.LaporResponse
 import com.inertia.utils.AppExecutor
 import com.mirfanrafif.kicksfilm.data.source.remote.StatusResponse
 import com.mirfanrafif.kicksfilm.vo.Resource
+import javax.inject.Inject
 
-class BencanaRepository private constructor(
+class BencanaRepository @Inject constructor(
     private val remote: BencanaRemoteDataSource,
     private val local: BencanaLocalDataSource,
     private val appExecutor: AppExecutor
 ): IBencanaRepository
 {
-    companion object {
-        @Volatile
-        private var instance: BencanaRepository? = null
-
-        fun getInstance(remote: BencanaRemoteDataSource, local: BencanaLocalDataSource,
-                        appExecutor: AppExecutor): BencanaRepository =
-            instance ?: synchronized(this) {
-                instance ?: BencanaRepository(remote, local, appExecutor).apply {
-                    instance = this
-                }
-            }
-    }
 
     override fun getAllBencana(): LiveData<Resource<List<BencanaEntity>>> {
 

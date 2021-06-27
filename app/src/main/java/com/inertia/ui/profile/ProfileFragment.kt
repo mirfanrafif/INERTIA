@@ -1,13 +1,16 @@
 package com.inertia.ui.profile
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import com.inertia.MyApplication
 import com.inertia.R
 import com.inertia.databinding.FragmentProfileBinding
 import com.inertia.ui.laporanmu.LaporanmuActivity
@@ -15,11 +18,15 @@ import com.inertia.ui.login.LoginActivity
 import com.inertia.ui.main.MainActivity
 import com.inertia.ui.terdampak.TerdampakActivity
 import com.inertia.utils.ViewModelFactory
+import javax.inject.Inject
 
 class ProfileFragment : Fragment() {
     private lateinit var binding: FragmentProfileBinding
 
-    private lateinit var viewModel: ProfileViewModel
+    @Inject
+    lateinit var factory: ViewModelFactory
+
+    private val viewModel: ProfileViewModel by viewModels { factory }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -27,11 +34,12 @@ class ProfileFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         binding = FragmentProfileBinding.inflate(inflater)
-        if (activity != null) {
-            val factory = ViewModelFactory.getInstance(requireActivity())
-            viewModel = ViewModelProvider(requireActivity(), factory)[ProfileViewModel::class.java]
-        }
         return binding.root
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        (requireActivity().application as MyApplication).coreComponent.inject(this)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.inertia.MyApplication
 import com.inertia.R
 import com.inertia.data.datasource.remote.request.RegisterRequest
 import com.inertia.databinding.ActivityRegisterBinding
@@ -14,16 +16,20 @@ import com.inertia.ui.verification.VerificationActivity
 import com.inertia.utils.DataMapper
 import com.inertia.utils.ViewModelFactory
 import com.mirfanrafif.kicksfilm.data.source.remote.StatusResponse
+import javax.inject.Inject
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    private lateinit var viewModel: RegisterViewModel
+
+    @Inject
+    lateinit var factory: ViewModelFactory
+
+    private val viewModel: RegisterViewModel by viewModels { factory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (application as MyApplication).coreComponent.inject(this)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
-        val factory = ViewModelFactory.getInstance(this)
-        viewModel = ViewModelProvider(this, factory)[RegisterViewModel::class.java]
         setContentView(binding.root)
 
         setDropdownItem()
