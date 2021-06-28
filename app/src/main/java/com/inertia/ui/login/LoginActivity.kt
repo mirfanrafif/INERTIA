@@ -8,9 +8,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.inertia.MyApplication
-import com.inertia.data.datasource.local.entity.UserEntity
+import com.inertia.core.datasource.local.entity.UserEntity
 import com.inertia.databinding.ActivityLoginBinding
 import com.inertia.ui.register.RegisterActivity
 import com.inertia.ui.verification.VerificationActivity
@@ -34,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (application as MyApplication).coreComponent.inject(this)
+        (application as MyApplication).appComponent.inject(this)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

@@ -24,7 +24,7 @@ class LaporanmuActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (application as MyApplication).coreComponent.inject(this)
+        (application as MyApplication).appComponent.inject(this)
         binding = ActivityLaporanmuBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }

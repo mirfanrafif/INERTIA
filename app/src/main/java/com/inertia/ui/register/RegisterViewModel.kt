@@ -2,11 +2,10 @@ package com.inertia.ui.register
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.inertia.data.datasource.remote.request.RegisterRequest
-import com.inertia.data.datasource.remote.response.ApiResponse
-import com.inertia.data.datasource.remote.response.RegisterResponse
-import com.inertia.data.repository.user.IUserRepository
-import com.inertia.data.repository.user.UserRepository
+import com.inertia.core.datasource.remote.request.RegisterRequest
+import com.inertia.core.datasource.remote.response.ApiResponse
+import com.inertia.core.datasource.remote.response.RegisterResponse
+import com.inertia.core.repository.user.IUserRepository
 import javax.inject.Inject
 
 class RegisterViewModel @Inject constructor (val userRepository: IUserRepository): ViewModel() {

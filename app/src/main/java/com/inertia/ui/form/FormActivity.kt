@@ -8,12 +8,11 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.inertia.MyApplication
-import com.inertia.data.datasource.local.entity.BencanaEntity
-import com.inertia.data.datasource.local.entity.UserEntity
-import com.inertia.data.datasource.remote.request.BencanaRequest
+import com.inertia.core.datasource.local.entity.BencanaEntity
+import com.inertia.core.datasource.local.entity.UserEntity
+import com.inertia.core.datasource.remote.request.BencanaRequest
 import com.inertia.databinding.ActivityFormBinding
 import com.inertia.ui.detail.DetailReportActivity
 import com.inertia.utils.ViewModelFactory
@@ -42,7 +41,7 @@ class FormActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (application as MyApplication).coreComponent.inject(this)
+        (application as MyApplication).appComponent.inject(this)
         binding = ActivityFormBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }

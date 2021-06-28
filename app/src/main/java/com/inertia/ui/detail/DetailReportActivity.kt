@@ -9,8 +9,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.SupportMapFragment
@@ -18,8 +16,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.inertia.MyApplication
 import com.inertia.R
-import com.inertia.data.datasource.local.entity.BencanaEntity
-import com.inertia.data.datasource.local.entity.UserEntity
+import com.inertia.core.datasource.local.entity.BencanaEntity
+import com.inertia.core.datasource.local.entity.UserEntity
 import com.inertia.databinding.ActivityDetailReportBinding
 import com.inertia.databinding.CrowdfundingAlertLayoutBinding
 import com.inertia.ui.assessment.AssessmentActivity
@@ -46,7 +44,7 @@ class DetailReportActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (application as MyApplication).coreComponent.inject(this)
+        (application as MyApplication).appComponent.inject(this)
         binding = ActivityDetailReportBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }

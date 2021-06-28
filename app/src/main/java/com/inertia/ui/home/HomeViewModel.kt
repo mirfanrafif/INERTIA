@@ -2,11 +2,9 @@ package com.inertia.ui.home
 
 import android.app.Activity
 import androidx.lifecycle.ViewModel
-import com.inertia.data.repository.bencana.BencanaRepository
-import com.inertia.data.repository.bencana.IBencanaRepository
-import com.inertia.data.repository.cuaca.CuacaRepository
-import com.inertia.data.repository.user.IUserRepository
-import com.inertia.data.repository.user.UserRepository
+import com.inertia.core.repository.bencana.IBencanaRepository
+import com.inertia.core.repository.cuaca.CuacaRepository
+import com.inertia.core.repository.user.IUserRepository
 import com.inertia.utils.LocationProvider
 import javax.inject.Inject
 

@@ -5,13 +5,12 @@ import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.inertia.MyApplication
-import com.inertia.data.datasource.local.entity.TerdampakEntity
-import com.inertia.data.datasource.local.entity.UserEntity
-import com.inertia.data.datasource.remote.api.InertiaService
-import com.inertia.data.datasource.remote.response.TerdampakResponse
+import com.inertia.core.datasource.local.entity.TerdampakEntity
+import com.inertia.core.datasource.local.entity.UserEntity
+import com.inertia.core.datasource.remote.api.InertiaService
+import com.inertia.core.datasource.remote.response.TerdampakResponse
 import com.inertia.databinding.ActivityTerdampakBinding
 import com.inertia.ui.main.MainViewModel
 import com.inertia.utils.ViewModelFactory
@@ -36,7 +35,7 @@ class TerdampakActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (application as MyApplication).coreComponent.inject(this)
+        (application as MyApplication).appComponent.inject(this)
         binding = ActivityTerdampakBinding.inflate(layoutInflater)
         user = viewModel.getUser()
         setContentView(binding.root)

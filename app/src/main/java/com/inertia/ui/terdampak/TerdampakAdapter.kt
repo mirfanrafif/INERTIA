@@ -4,7 +4,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.inertia.data.datasource.local.entity.TerdampakEntity
+import com.inertia.core.datasource.local.entity.TerdampakEntity
 import com.inertia.databinding.ItemTerdampakBinding
 import com.inertia.ui.detailassessment.DetailAssessmentActivity
 

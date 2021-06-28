@@ -1,10 +1,8 @@
 package com.inertia.ui.laporanmu
 
 import androidx.lifecycle.ViewModel
-import com.inertia.data.repository.bencana.BencanaRepository
-import com.inertia.data.repository.bencana.IBencanaRepository
-import com.inertia.data.repository.user.IUserRepository
-import com.inertia.data.repository.user.UserRepository
+import com.inertia.core.repository.bencana.IBencanaRepository
+import com.inertia.core.repository.user.IUserRepository
 import javax.inject.Inject
 
 class LaporanmuViewModel @Inject constructor (

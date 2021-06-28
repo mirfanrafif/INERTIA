@@ -2,8 +2,8 @@ package com.inertia.ui.detailassessment
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.inertia.data.datasource.remote.api.InertiaService
-import com.inertia.data.datasource.remote.response.PenilaianResponse
+import com.inertia.core.datasource.remote.api.InertiaService
+import com.inertia.core.datasource.remote.response.PenilaianResponse
 import com.inertia.databinding.ActivityDetailAssessmentBinding
 import retrofit2.Call
 import retrofit2.Callback

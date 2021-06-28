@@ -7,10 +7,9 @@ import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.inertia.MyApplication
 import com.inertia.R
-import com.inertia.data.datasource.remote.request.RegisterRequest
+import com.inertia.core.datasource.remote.request.RegisterRequest
 import com.inertia.databinding.ActivityRegisterBinding
 import com.inertia.ui.verification.VerificationActivity
 import com.inertia.utils.DataMapper
@@ -28,7 +27,7 @@ class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        (application as MyApplication).coreComponent.inject(this)
+        (application as MyApplication).appComponent.inject(this)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 

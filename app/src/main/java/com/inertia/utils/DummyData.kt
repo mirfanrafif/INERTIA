@@ -1,7 +1,6 @@
 package com.inertia.utils
 
-import com.inertia.data.datasource.remote.response.BencanaItem
-import com.inertia.data.datasource.remote.response.BencanaResponse
+import com.inertia.core.datasource.remote.response.BencanaItem
 
 object DummyData {
     val listBencana: List<BencanaItem> = arrayListOf()

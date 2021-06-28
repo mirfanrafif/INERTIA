@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.inertia.R
-import com.inertia.data.datasource.local.entity.BencanaEntity
+import com.inertia.core.datasource.local.entity.BencanaEntity
 import com.inertia.databinding.ItemBencanaBinding
 import com.inertia.ui.detail.DetailReportActivity
 

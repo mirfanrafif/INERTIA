@@ -1,13 +1,11 @@
 package com.inertia.utils
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.inertia.data.repository.bencana.BencanaRepository
-import com.inertia.data.repository.bencana.IBencanaRepository
-import com.inertia.data.repository.cuaca.CuacaRepository
-import com.inertia.data.repository.user.IUserRepository
-import com.inertia.data.repository.user.UserRepository
+import com.inertia.core.repository.bencana.IBencanaRepository
+import com.inertia.core.repository.cuaca.CuacaRepository
+import com.inertia.core.repository.cuaca.ICuacaRepository
+import com.inertia.core.repository.user.IUserRepository
 import com.inertia.ui.detail.DetailReportViewModel
 import com.inertia.ui.form.FormViewModel
 import com.inertia.ui.home.HomeViewModel
@@ -20,10 +18,11 @@ import com.inertia.ui.verification.VerificationViewModel
 import javax.inject.Inject
 
 @Suppress("UNCHECKED_CAST")
+@AppScope
 class ViewModelFactory @Inject constructor (
     private val bencanaRepository: IBencanaRepository,
     private val userRepository: IUserRepository,
-    private val cuacaRepository: CuacaRepository
+    private val cuacaRepository: ICuacaRepository
     ) : ViewModelProvider.NewInstanceFactory() {
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

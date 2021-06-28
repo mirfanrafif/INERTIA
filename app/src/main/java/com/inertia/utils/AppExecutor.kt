@@ -6,6 +6,7 @@ import androidx.annotation.VisibleForTesting
 import dagger.Provides
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
+import javax.inject.Inject
 
 
 class AppExecutor @VisibleForTesting constructor(
@@ -17,6 +18,7 @@ class AppExecutor @VisibleForTesting constructor(
         private const val THREAD_COUNT = 3
     }
 
+    @Inject
     constructor() : this(
         Executors.newSingleThreadExecutor(),
         Executors.newFixedThreadPool(THREAD_COUNT),

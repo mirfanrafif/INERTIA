@@ -5,8 +5,8 @@ import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
-import com.inertia.data.datasource.local.entity.UserEntity
+import com.inertia.MyApplication
+import com.inertia.core.datasource.local.entity.UserEntity
 import com.inertia.databinding.ActivityVerificationBinding
 import com.inertia.ui.main.MainActivity
 import com.inertia.utils.ViewModelFactory
@@ -29,6 +29,7 @@ class VerificationActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        (application as MyApplication).appComponent.inject(this)
 
         user = intent.getParcelableExtra(EXTRA_USER)
         code = intent.getStringExtra(EXTRA_CODE)

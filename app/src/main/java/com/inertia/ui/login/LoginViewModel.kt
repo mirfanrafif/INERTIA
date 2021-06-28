@@ -1,8 +1,7 @@
 package com.inertia.ui.login
 
 import androidx.lifecycle.ViewModel
-import com.inertia.data.repository.user.IUserRepository
-import com.inertia.data.repository.user.UserRepository
+import com.inertia.core.repository.user.IUserRepository
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor (val userRepository: IUserRepository): ViewModel() {

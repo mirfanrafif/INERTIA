@@ -3,11 +3,9 @@ package com.inertia.ui.detail
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.inertia.data.datasource.local.entity.BencanaEntity
-import com.inertia.data.repository.bencana.BencanaRepository
-import com.inertia.data.repository.bencana.IBencanaRepository
-import com.inertia.data.repository.user.IUserRepository
-import com.inertia.data.repository.user.UserRepository
+import com.inertia.core.datasource.local.entity.BencanaEntity
+import com.inertia.core.repository.bencana.IBencanaRepository
+import com.inertia.core.repository.user.IUserRepository
 import javax.inject.Inject
 
 class DetailReportViewModel @Inject constructor (private val bencanaRepository: IBencanaRepository,
